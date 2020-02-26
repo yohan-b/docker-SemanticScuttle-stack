@@ -1,7 +1,7 @@
 #!/bin/bash
 source ~/openrc.sh
 INSTANCE=$(/home/yohan/env_py3/bin/openstack server show -c id --format value $(hostname))
-mkdir -p /mnt/volumes/scuttle_code /mnt/volumes/scuttle_php5-fpm_conf
+sudo mkdir -p /mnt/volumes/scuttle_code /mnt/volumes/scuttle_php5-fpm_conf
 if ! mountpoint -q /mnt/volumes/scuttle_code
 then
      VOLUME_ID=$(/home/yohan/env_py3/bin/openstack volume show scuttle_code -c id --format value)
