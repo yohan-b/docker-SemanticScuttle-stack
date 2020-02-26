@@ -6,12 +6,14 @@ if ! mountpoint -q /mnt/volumes/scuttle_code
 then
      VOLUME_ID=$(/home/yohan/env_py3/bin/openstack volume show scuttle_code -c id --format value)
      test -e /dev/disk/by-id/*${VOLUME_ID:0:20} || nova volume-attach $INSTANCE $VOLUME_ID auto
+     sleep 3
      sudo mount /dev/disk/by-id/*${VOLUME_ID:0:20} /mnt/volumes/scuttle_code
 fi
 if ! mountpoint -q /mnt/volumes/scuttle_php5-fpm_conf
 then
      VOLUME_ID=$(/home/yohan/env_py3/bin/openstack volume show scuttle_php5-fpm_conf -c id --format value)
      test -e /dev/disk/by-id/*${VOLUME_ID:0:20} || nova volume-attach $INSTANCE $VOLUME_ID auto
+     sleep 3
      sudo mount /dev/disk/by-id/*${VOLUME_ID:0:20} /mnt/volumes/scuttle_php5-fpm_conf
 fi
 
