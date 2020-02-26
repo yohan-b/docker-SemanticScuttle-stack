@@ -4,29 +4,29 @@ services:
 
   apache-for-fpm:
     image: apache-scuttle:$VERSION_APACHE_FPM
-    build: "https://git.scimetis.net/yohan/docker-apache-for-fpm.git"
+    #build: "https://git.scimetis.net/yohan/docker-apache-for-fpm.git"
     container_name: apache-scuttle
     restart: always
     networks:
       - reverse-proxy
       - php5-fpm
     volumes:
-      - scuttle_code:/var/www/html:z
+      - /mnt/volumes/scuttle_code/data:/var/www/html:z
     environment:
       FPM_HOST: php5-fpm:9000
       SERVER_NAME: scuttle.scimetis.net
  
   php5-fpm:
     image: php5-fpm:$VERSION_PHP_FPM
-    build: "https://git.scimetis.net/yohan/docker-php5-fpm.git"
+    #build: "https://git.scimetis.net/yohan/docker-php5-fpm.git"
     container_name: php5-fpm
     restart: always
     networks:
       - php5-fpm
       - mysqlnet
     volumes:
-      - scuttle_code:/var/www/html:z
-      - scuttle_php5-fpm_conf:/etc/php5/fpm/pool.d:Z
+      - /mnt/volumes/scuttle_code/data:/var/www/html:z
+      - /mnt/volumes/scuttle_php5-fpm_conf/data:/etc/php5/fpm/pool.d:Z
  
 networks:
 
@@ -36,12 +36,4 @@ networks:
   php5-fpm:
 
   mysqlnet:
-    external: true
-
-volumes:
-
-  scuttle_code:
-    external: true
-
-  scuttle_php5-fpm_conf:
     external: true
