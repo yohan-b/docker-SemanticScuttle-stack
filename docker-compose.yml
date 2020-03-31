@@ -6,7 +6,6 @@ services:
     image: apache-scuttle:$VERSION_APACHE_FPM
     #build: "https://git.scimetis.net/yohan/docker-apache-for-fpm.git"
     container_name: apache-scuttle
-    restart: always
     networks:
       - reverse-proxy
       - php5-fpm
@@ -20,7 +19,6 @@ services:
     image: php5-fpm:$VERSION_PHP_FPM
     #build: "https://git.scimetis.net/yohan/docker-php5-fpm.git"
     container_name: php5-fpm
-    restart: always
     networks:
       - php5-fpm
       - mysqlnet
